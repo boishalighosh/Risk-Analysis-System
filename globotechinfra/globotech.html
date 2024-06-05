@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5dd0cc1318.js" crossorigin="anonymous"></script>
+    <title>Globotech Infrastructure Pvt. Ltd.</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+       body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: black;
+        }
+       a{
+            text-decoration: none;
+            color: #eee;
+       }
+       header{
+            width: 1140px;
+            max-width: 80%;
+            height: 50px;
+            position: relative;
+            z-index: 100;
+       }
+       .head a{
+            margin-right: 2px;
+       }
+       .menu a{
+            margin-right: 20px;
+       }
+       .menu a:hover{
+            cursor: pointer;
+            border-bottom-color: orangered;
+       }
+       .slideshow{
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            margin-top: -50px;
+            position: relative;
+            inset: 0 0 0 0;
+        }
+       .slideshow .list .item{
+            position: absolute;
+        }
+       .slideshow .list .item img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+       .slideshow .list .item .content{
+            position: absolute;
+            top: 20%;
+            width: 1140px;
+            max-width: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-right: 30%;
+            box-sizing: border-box;
+            color: #fff;
+            text-shadow: 0 5px 10px #0004;
+        }
+       .slideshow .list .item .content .title{
+            font-weight: bold;
+            font-size: 5em;
+            color: orangered;
+        }
+       .thumbnail{
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            width: max-content;
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+        }
+       .thumbnail .item{
+            width: 150PX;
+            height: 220px;
+            flex-shrink: 0;
+            position: relative;
+        }
+       .thumbnail .item img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+       .thumbnail .item .content{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+        }
+       .thumbnail .item .content .title{
+            font-weight: bold;
+            color: white;
+        }
+       .arrow{
+            position: absolute;
+            top: 80%;
+            right: 52%;
+            width: 300px;
+            max-width: 30%;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+       .arrow button{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #eee4;
+            border: none;
+            color: #fff;
+            font-family: Anton;
+            font-weight: bold;
+            font-size: large;
+            transition: .5s;z-index: 100;
+        }
+       .arrow button:hover{
+            background-color: #eee;
+            color: #555;
+        }
+       .slideshow .list .item:nth-child(1){
+            z-index: 1;
+        }
+       .slideshow .list .item:nth-child(1) .title,
+       .slideshow .list .item:nth-child(1) .details{
+            transform: translateY(50px);
+            filter: blur(20px);
+            opacity: 0;
+            animation: showContent 0.5s 1s linear 1 forwards;
+        }
+       @keyframes showContent{
+        to{
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+          }
+        }
+       .slideshow .list .item:nth-child(1) .title{
+            animation-delay: 4s;
+        }
+       .slideshow .list .item:nth-child(1) .details{
+            animation-delay: 4.2s;
+        }
+       .slideshow.next .list .item:nth-child(1) img{
+            width: 150px;
+            height: 220px;
+            position: absolute;
+            left: 50%;
+            bottom: 50px;
+            border-radius: 20px;
+            animation: showImage 0.5s linear 1 forwards;
+        }
+       @keyframes showImage{
+        to{
+            width: 100%;
+            height: 100%;
+            left: 0;
+            bottom: 0;
+            border-radius: 0;
+          }
+        }
+       .slideshow.next .thumbnail .item:nth-last-child(1){
+            width: 0;
+            overflow: hidden;
+            animation: showThumbnail 0.5s linear 1 forwards;
+        }
+       @keyframes showThumbnail{
+        to{
+            width: 150px;
+          }
+        }
+       .slideshow.next .thumbnail{
+            transform: translateX(150px);
+            animation: transformThumbnail 0.5s linear 1 forwards;
+        }
+       @keyframes transformThumbnail{
+        to{
+            transform: translateX(0);
+          }
+        }
+       .slideshow.prev .list .item:nth-child(2){
+            z-index: 2;
+        }
+       .slideshow.prev .list .item:nth-child(2) img{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            animation: outImage 0.5s linear 1 forwards;
+        }
+       .slideshow.prev .thumbnail .item:nth-child(1){
+            width: 0;
+            overflow: hidden;
+            opacity: 0;
+            animation: showThumbnail 0.5s linear 1 forwards;
+        }
+       .slideshow.prev .list .item:nth-child(2) .title,
+       .slideshow.prev .list .item:nth-child(2) .details{
+            animation: contentOut 1.5s linear 1 forwards;
+        }
+       @keyframes contentOut{
+        to{
+            transform: translateY(-150px);
+            filter: blur(20px);
+            opacity: 0;
+          }
+        }
+       .slideshow.next .arrow button,
+       .slideshow.prev .arrow button{
+            pointer-events: none;
+        } 
+       .time{
+            width: 0%;
+            height: 5px;
+            background-color: orangered;
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            left: 0;
+        }
+       .slideshow.next .time,
+       .slideshow.prev .time{
+            width: 100%;
+            animation: timeRunning 2s linear 1 forwards;
+        }
+       @keyframes timeRunning{
+        to{
+            width: 0;
+          }
+        }
+       @media screen and (max-width:678px){
+            .slideshow .list .item .content{
+                padding-right: 0;
+            }
+            .slideshow .list .item .content .title{
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- <img src="logo.png" height="140px" width="110px" style="padding-left: 1200px;position: absolute;"> -->
+        </nav>
+        <nav class="head">
+            <a href="logina.php" class="login" style="margin-right: 520px;border: solid 2px;border-radius: 20px;padding: 8px;border-color: transparent;"><i class="fa fa-sign-in"></i> Login</a>
+            <a href="#"><i class="fa fa-facebook-square" style="color:blue;"></i></a>
+		    <a href="#"><i class="fa fa-twitter-square"style="color:lightblue;"></i></a>
+		    <a href="#"><i class="fa fa-instagram" style="color:pink;"></i></a>
+		    <a href="#"><i class="fa fa-pinterest" style="color:red;"></i></a>
+		    <a href="#"><i class="fa fa-youtube-play" style="color:red;"></i></a>
+        </nav>
+        <br>
+        <nav class="menu">
+            <a href="#"><i class="fa fa-home"></i> Home</a>
+            <a href="#"><i class="fa fa-info-circle"></i> About us</a>
+            <a href="#"><i class="fa fa-user"></i> Director Details</a>
+            <a href="#"><i class="fa fa-medkit"></i> Services</a>
+            <a href="#"><i class="fa fa-lightbulb-o"></i> Project</a>
+            <a href="#"><i class="fa fa-phone"></i> Contact us</a>
+        </nav>
+    </header>
+    <div class="slideshow" id="slideshow">
+        <div class="list">
+            <div class="item">
+                <img src="bg1.jpg">
+                <div class="content">
+                    <div class="title">PLANNING</div>
+                    <div class="details">The planning is done by the professionals, who organize and coordinate all the activities and resources required to successfully complete a construction project.</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="bg2.jpg">
+                <div class="content">
+                    <div class="title">EQUIPMENTS</div>
+                    <div class="details">Our Company use the advance Equipments for completing the project that ensures the perfect complition of the construction project</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="bg3.jpg">
+                <div class="content">
+                    <div class="title">WORKERS</div>
+                    <div class="details">Our Company have well skilled workers, who give their best to give a perfect output</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="bg4.jpg">
+                <div class="content">
+                    <div class="title">PROJECTS</div>
+                    <div class="details"><pre>Constructing Roads is our specialist area, We have done more than 100 road projects that conserns the perfect connection between lands
+When it comes to constructing a bridge, Our workers have done so much hard work to take out the best result
+Building construction is the methodology of addition of structure to property that is imaportant for an economy to grow</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <div class="item">
+                <img src="bg1.jpg" alt="">
+                <div class="content">
+                    <div class="title">PLANNING</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="bg2.jpg" alt="">
+                <div class="content">
+                    <div class="title">EQUIPMENTS</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="bg3.jpg" alt="">
+                <div class="content">
+                    <div class="title">WORKERS</div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="bg4.jpg" alt="">
+                <div class="content">
+                    <div class="title">PROJECT</div>
+                </div>
+            </div>
+        </div>
+        <div class="arrow">
+            <button id="prev"><</button>
+            <button id="next">></button>
+        </div>
+        <div class="time"></div>
+    </div>
+</body>
+<script> 
+    let nextDon = document.getElementById('next'); 
+    let prevDon = document.getElementById('prev'); 
+    let slideshowDon = document.querySelector('.slideshow'); 
+    let listItemDon = document.querySelector('.slideshow .list'); 
+    let thumbnailDom = document.querySelector('.slideshow .thumbnail'); 
+    nextDon.onclick = function() { 
+        showSlider('next'); 
+    } 
+    prevDon.onclick = function() { 
+        showSlider('prev'); 
+    } 
+    let timeRun = 3000; 
+    let timeAutoNext = 5000; 
+    let runTimeOut; 
+    let runAutoRun = setTimeout(() => { 
+        nextDon.click(); 
+    }, timeAutoNext); 
+    function showSlider(type) { 
+        let itemSlider = document.querySelectorAll('.slideshow .list .item'); 
+        let itemThumbnail = document.querySelectorAll('.slideshow .thumbnail .item'); 
+        if (type === 'next') { 
+            listItemDon.appendChild(itemSlider[0]); 
+            thumbnailDom.appendChild(itemThumbnail[0]); 
+            slideshowDon.classList.add('next'); 
+        } 
+        else { 
+            let positionLastItem = itemSlider.length - 1; 
+            listItemDon.prepend(itemSlider[positionLastItem]); 
+            thumbnailDom.prepend(itemThumbnail[positionLastItem]); 
+            slideshowDon.classList.add('prev'); 
+        } 
+        clearTimeout(runTimeOut); 
+        runTimeOut = setTimeout(() => { 
+            slideshowDon.classList.remove('next'); 
+            slideshowDon.classList.remove('prev'); 
+        }, timeRun); 
+        clearTimeout(runAutoRun); 
+        runAutoRun = setTimeout(() => { 
+            nextDon.click(); 
+        }, timeAutoNext); 
+    } 
+    </script>
+</html>
